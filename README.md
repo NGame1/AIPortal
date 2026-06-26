@@ -2,7 +2,7 @@
 AI Portal is a proxy between GitHub Copilot and your provider. 
 
 ## Using AI Portal
-- Install the latest version of the extension from Releases
+- Install the latest version of the extension from Releases, or [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=NimaNoshahi.AIPortal)
 - Open your Visual Studio then navigate to Extensions -> AI Portal Settings
 - Set your Base URL and API Key from your provider. (We tested OpenRouter and Z.Ai)
 - After saving a command line window will pops uplike below
