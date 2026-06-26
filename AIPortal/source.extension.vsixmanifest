@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="AIPortal.bd2e73fa-223d-4b8f-86b5-da1286dc7e06" Version="1.410" Language="en-US" Publisher="SystemGroup" />
+    <Identity Id="AIPortal.bd2e73fa-223d-4b8f-86b5-da1286dc7e06" Version="1.500" Language="en-US" Publisher="Nima Noshahi" />
     <DisplayName>AIPortal</DisplayName>
-    <Description>System Group AI Portal extension by NimaN.</Description>
+    <Description>AI Portal is a Visual Studio extension that enables you to use OpenRouter or ZAI providers in your GitHub Copilot</Description>
+    <ReleaseNotes>Added Http Port and Timeout settings</ReleaseNotes>
     <Icon>AIPortal.ico</Icon>
   </Metadata>
   <Installation ExtensionType="VSSDK+VisualStudio.Extensibility">
-    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.14,)">
+    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[18.0,)">
       <ProductArchitecture>amd64</ProductArchitecture>
     </InstallationTarget>
-    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.14,)">
+    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[18.0,)">
       <ProductArchitecture>arm64</ProductArchitecture>
     </InstallationTarget>
   </Installation>

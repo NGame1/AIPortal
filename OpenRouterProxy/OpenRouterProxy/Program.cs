@@ -12,6 +12,7 @@ string openRouterApiKey = Environment.GetEnvironmentVariable("OPENROUTER_API_KEY
 string openRouterUrl = "https://openrouter.ai/api/v1";
 string modelFilter = "";
 bool debugOutput = false;
+int? timeoutInSeconds = null;
 
 // Parse command-line args
 for (int i = 0; i < args.Length; i++)
@@ -23,6 +24,7 @@ for (int i = 0; i < args.Length; i++)
         case "--url": openRouterUrl = args[++i]; break;
         case "--filter": modelFilter = args[++i]; break;
         case "--debug": debugOutput = true; break;
+        case "--timeout": timeoutInSeconds = int.Parse(args[++i]); break;
     }
 }
 
@@ -35,7 +37,7 @@ if (string.IsNullOrWhiteSpace(openRouterApiKey))
 // ---------------------------------------------------------------------------
 // Global Shared Resources
 // ---------------------------------------------------------------------------
-var httpClient = new HttpClient { Timeout = TimeSpan.FromMinutes(15) };
+var httpClient = new HttpClient { Timeout = TimeSpan.FromMinutes(timeoutInSeconds ?? 30) };
 
 // Thread-safe model cache
 var modelCacheLock = new object();
@@ -236,7 +238,7 @@ async Task HandleChat(HttpListenerRequest req, HttpListenerResponse resp)
             resp.SendChunked = true;
 
             using var reqMsg = BuildRequest(HttpMethod.Post, uri, outBody);
-            using var timeoutCts = new CancellationTokenSource(TimeSpan.FromSeconds(30));
+            using var timeoutCts = new CancellationTokenSource(TimeSpan.FromSeconds(timeoutInSeconds ?? 30));
 
             HttpResponseMessage upResp;
             try
@@ -247,7 +249,7 @@ async Task HandleChat(HttpListenerRequest req, HttpListenerResponse resp)
             }
             catch (OperationCanceledException)
             {
-                Log("ERROR", "Upstream timeout after 30 seconds (stream)");
+                Log("ERROR", $"Upstream timeout after {timeoutInSeconds ?? 30} seconds (stream)");
                 await SendErr(resp, 504, "Upstream did not respond within 30 seconds");
                 return;
             }
@@ -300,7 +302,7 @@ async Task HandleChat(HttpListenerRequest req, HttpListenerResponse resp)
         }
         catch (OperationCanceledException)
         {
-            Log("ERROR", "Upstream timeout or cancelled");
+            Log("ERROR", $"Upstream timeout or cancelled after {timeoutInSeconds ?? 30} seconds");
         }
         catch (Exception ex)
         {
@@ -317,7 +319,7 @@ async Task HandleChat(HttpListenerRequest req, HttpListenerResponse resp)
         try
         {
             using var reqMsg = BuildRequest(HttpMethod.Post, uri, body);
-            using var timeoutCts = new CancellationTokenSource(TimeSpan.FromSeconds(30));
+            using var timeoutCts = new CancellationTokenSource(TimeSpan.FromSeconds(timeoutInSeconds ?? 30));
 
             HttpResponseMessage upResp;
             try
@@ -326,8 +328,8 @@ async Task HandleChat(HttpListenerRequest req, HttpListenerResponse resp)
             }
             catch (OperationCanceledException)
             {
-                Log("ERROR", "Upstream timeout after 30 seconds");
-                await SendErr(resp, 504, "Upstream did not respond within 30 seconds");
+                Log("ERROR", $"Upstream timeout after {timeoutInSeconds ?? 30} seconds");
+                await SendErr(resp, 504, $"Upstream did not respond within {timeoutInSeconds ?? 30} seconds");
                 return;
             }
 
@@ -371,8 +373,8 @@ async Task HandleChat(HttpListenerRequest req, HttpListenerResponse resp)
         }
         catch (OperationCanceledException)
         {
-            Log("ERROR", "Upstream timeout after 30 seconds");
-            await SendErr(resp, 504, "Upstream did not respond within 30 seconds");
+            Log("ERROR", $"Upstream timeout after {timeoutInSeconds ?? 30} seconds");
+            await SendErr(resp, 504, $"Upstream did not respond within {timeoutInSeconds ?? 30} seconds");
         }
         catch (Exception ex)
         {
