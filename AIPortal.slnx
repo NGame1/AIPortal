@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="AIPortal/AIPortal.csproj">
+    <Deploy Solution="Debug|*" />
+  </Project>
+  <Project Path="OpenRouterProxy/OpenRouterProxy/OpenRouterProxy.csproj" />
+</Solution>

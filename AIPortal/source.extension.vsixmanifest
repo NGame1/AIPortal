@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+  <Metadata>
+    <Identity Id="AIPortal.bd2e73fa-223d-4b8f-86b5-da1286dc7e06" Version="1.410" Language="en-US" Publisher="SystemGroup" />
+    <DisplayName>AIPortal</DisplayName>
+    <Description>System Group AI Portal extension by NimaN.</Description>
+    <Icon>AIPortal.ico</Icon>
+  </Metadata>
+  <Installation ExtensionType="VSSDK+VisualStudio.Extensibility">
+    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.14,)">
+      <ProductArchitecture>amd64</ProductArchitecture>
+    </InstallationTarget>
+    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.14,)">
+      <ProductArchitecture>arm64</ProductArchitecture>
+    </InstallationTarget>
+  </Installation>
+  <Dependencies>
+    <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" Version="[4.5,)" d:Source="Manual" />
+  </Dependencies>
+  <Prerequisites>
+    <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" DisplayName="Visual Studio core editor" Version="[17.0,)" />
+  </Prerequisites>
+</PackageManifest>

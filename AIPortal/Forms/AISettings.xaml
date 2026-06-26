@@ -1,0 +1,126 @@
+﻿<platformUI:DialogWindow
+        x:Class="AIPortal.Forms.AISettings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AIPortal.Forms"
+        xmlns:platformUI="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.15.0"
+        Background="{DynamicResource {x:Static platformUI:EnvironmentColors.ToolWindowBackgroundBrushKey}}"
+        Foreground="{DynamicResource {x:Static platformUI:EnvironmentColors.ComboBoxTextBrushKey}}"
+        BorderBrush="{DynamicResource {x:Static platformUI:EnvironmentColors.TitleBarActiveBrushKey}}"
+        BorderThickness="1"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        HasDialogFrame="True"
+        Title="AI Settings" Height="215" Width="600">
+
+    
+    <platformUI:DialogWindow.Resources>
+
+        <Style TargetType="{x:Type platformUI:DialogWindow}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static platformUI:EnvironmentColors.ToolWindowBackgroundBrushKey}}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource {x:Static platformUI:EnvironmentColors.ToolWindowBorderBrushKey}}" />
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static platformUI:EnvironmentColors.ToolWindowTextBrushKey}}" />
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="{DynamicResource {x:Static platformUI:CommonControlsColors.TextBoxBackgroundBrushKey}}" />
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static platformUI:CommonControlsColors.TextBoxTextBrushKey}}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource {x:Static platformUI:CommonControlsColors.TextBoxBorderBrushKey}}" />
+            <Setter Property="Padding" Value="4" />
+        </Style>
+
+        <Style TargetType="PasswordBox">
+            <Setter Property="Background" Value="{DynamicResource {x:Static platformUI:CommonControlsColors.TextBoxBackgroundBrushKey}}" />
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static platformUI:CommonControlsColors.TextBoxTextBrushKey}}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource {x:Static platformUI:CommonControlsColors.TextBoxBorderBrushKey}}" />
+            <Setter Property="Padding" Value="4" />
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="{DynamicResource {x:Static platformUI:EnvironmentColors.SystemButtonFaceBrushKey}}" />
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static platformUI:EnvironmentColors.ButtonTextBrushKey}}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource {x:Static platformUI:EnvironmentColors.StartPageButtonBorderBrushKey}}" />
+            <Setter Property="Padding" Value="8,4" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Padding="{TemplateBinding Padding}">
+                            <ContentPresenter 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{DynamicResource {x:Static platformUI:CommonControlsColors.ButtonHoverBrushKey}}" />
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static platformUI:CommonControlsColors.ButtonHoverTextBrushKey}}" />
+                                <Setter Property="BorderBrush" Value="{DynamicResource {x:Static platformUI:CommonControlsColors.ButtonBorderHoverBrushKey}}" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="{DynamicResource {x:Static platformUI:CommonControlsColors.ButtonPressedBrushKey}}" />
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static platformUI:CommonControlsColors.ButtonPressedTextBrushKey}}" />
+                                <Setter Property="BorderBrush" Value="{DynamicResource {x:Static platformUI:CommonControlsColors.ButtonPressedBrushKey}}" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="{DynamicResource {x:Static platformUI:CommonControlsColors.ButtonDisabledBrushKey}}" />
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static platformUI:CommonControlsColors.ButtonDisabledTextBrushKey}}" />
+                                <Setter Property="BorderBrush" Value="{DynamicResource {x:Static platformUI:CommonControlsColors.ButtonDisabledBrushKey}}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </platformUI:DialogWindow.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <!--<Border Grid.Row="0"
+                Background="{DynamicResource {x:Static platformUI:EnvironmentColors.TitleBarActiveBrushKey}}">
+            <Grid>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="6,0,0,0">
+                    --><!-- VS Icon --><!--
+                    <imaging:CrispImage Width="16" Height="16" 
+                                       Moniker="{x:Static catalog:KnownMonikers.StatusInformation}"
+                                       Margin="4,0,8,0"/>
+
+                    <TextBlock Text="Your Title"
+                               Foreground="{DynamicResource {x:Static platformUI:EnvironmentColors.TitleBarActiveTextBrushKey}}"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <Button Content="✕"
+                        HorizontalAlignment="Right"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Foreground="{DynamicResource {x:Static platformUI:EnvironmentColors.TitleBarActiveTextBrushKey}}"
+                        Width="30" Height="30"/>
+            </Grid>
+        </Border>-->
+        <StackPanel Margin="10" Grid.Row="1">
+            <TextBlock Text="Base URL:" FontWeight="Bold"/>
+            <TextBox x:Name="BaseUrlBox" Margin="0,5,0,15" Height="25"/>
+            <TextBlock Text="API Key:" FontWeight="Bold"/>
+            <PasswordBox x:Name="ApiKeyBox" Margin="0,5,0,15" Height="25"/>
+        </StackPanel>
+        <Grid Grid.Row="2" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Save" Width="80" Margin="0,0,10,0" Click="SaveButton_Click" Grid.Column="1" Background="{DynamicResource {x:Static platformUI:CommonControlsColors.ButtonDefaultBrushKey}}"/>
+            <Button Content="Cancel" Width="80" Margin="0,0,10,0" Click="CancelButton_Click" Grid.Column="2"/>
+        </Grid>
+    </Grid>
+</platformUI:DialogWindow>
+    
