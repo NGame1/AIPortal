@@ -26,6 +26,9 @@ To build this solution you just need `Visual Studio Extension Development` and `
 
 ## Credits
 Credits of this project goes to 
-- [OpenRouterCopilotProxy By Sander](ttps://github.com/sander-/openrouter-copilot-proxy)
-- SystemGroup Organization
-- And me 
+
+<p>
+  <a href="https://github.com/sander-/openrouter-copilot-proxy">OpenRouterCopilotProxy By Sander</a>
+  
+  SystemGroup Organization
+</p>
